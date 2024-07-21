@@ -1,0 +1,24 @@
+
+@import "plugins/reset.css";
+@import "plugins/bootstrap-grid.css";
+
+body {
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Cardo", serif;
+    font-weight: 700;
+}
+
+p {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16.7px;
+}
+
+button {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+}
