@@ -4,9 +4,7 @@ html {
 
 .container, .container-fluid,
 .container .row,
-.container .row *,
-.container .row *:before,
-.container .row *:after {
+.container .row > * {
     box-sizing: border-box;
 }
 
@@ -38,7 +36,7 @@ html {
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1140px;
+        max-width: 1230px;
     }
 }
 

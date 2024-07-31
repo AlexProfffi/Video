@@ -24,7 +24,8 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': '/resources/js',
-            'ziggy': path.resolve('vendor/tightenco/ziggy')
+            'ziggy': path.resolve('vendor/tightenco/ziggy'),
+            '/images': '/resources/images'
         }
     }
 });
