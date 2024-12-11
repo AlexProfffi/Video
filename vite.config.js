@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'node:path';
 
 
+
 export default defineConfig({
     plugins: [
         vue(),
@@ -25,7 +26,8 @@ export default defineConfig({
         alias: {
             '@': '/resources/js',
             'ziggy': path.resolve('vendor/tightenco/ziggy'),
-            '/images': '/resources/images'
+            '/images': '/resources/images',
+            '/videos': '/resources/videos'
         }
     }
 });

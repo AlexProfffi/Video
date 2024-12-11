@@ -8,6 +8,40 @@ body {
     background-color: #e9e7e7;
 }
 
+body.toggler-open {
+    overflow: hidden;
+}
+
+.row {
+    justify-content: normal;
+}
+
+@media (min-width: 768px) {
+    .w-lg-100 { width: 100% !important; }
+}
+
+@media (min-width: 1200px) {
+    .w-xl-0 { width: 0 !important; }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1230px;
+    }
+}
+
+@media (min-width: 768px) {
+    .justify-content-md-end {
+        justify-content: end;
+    }
+}
+
+@media (min-width: 1200px) {
+    .justify-content-xl-normal {
+        justify-content: normal;
+    }
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Cardo", serif;
     font-weight: 700;
