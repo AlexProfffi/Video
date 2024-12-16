@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Exceptions\MovieException;
+use App\Services\Movie\Label\Regular;
+use Exception;
 use App\Services\Movie\Movie;
 
 
@@ -13,13 +14,50 @@ class Customer
      */
     private array $rentals = [];
 
-    private Statement $statement;
-
 
     public function __construct
     (
        public string $name
     ) {
+    }
+
+    public function showStatement(): string
+    {
+        $result[] = 'Учет аренды для ' . $this->getName();
+
+        foreach($this->getRentals() as $rental)
+        {
+            $result[] = $rental->getMovie()->getName() . ': ' . $rental->getCost() . ' грн';
+        }
+
+        $result[] = 'Сумма задолженности составляет: ' . $this->getTotalCost() . ' грн';
+        $result[] = 'Ваш бонус за активность: ' . $this->getTotalPoints();
+
+        return implode(';' . PHP_EOL, $result);
+    }
+
+    private function getTotalCost(): float
+    {
+        $result = 0.0;
+
+        foreach($this->getRentals() as $rental)
+        {
+            $result += $rental->getCost();
+        }
+
+        return $result;
+    }
+
+    private function getTotalPoints(): int
+    {
+        $result = 0;
+
+        foreach($this->getRentals() as $rental)
+        {
+            $result += $rental->getPoints();
+        }
+
+        return $result;
     }
 
     public function getName(): string
@@ -35,9 +73,6 @@ class Customer
         return $this->rentals;
     }
 
-    /**
-     * @throws MovieException
-     */
     public function rent(string $movieName, int $days): void
     {
         $this->checkMyRent($movieName);
@@ -46,21 +81,14 @@ class Customer
             new Rental(Movie::firstByName($movieName), $days);
     }
 
-
     private function checkMyRent(string $movieName): void
     {
         foreach ($this->rentals as $rental)
         {
             if($rental->getMovie()->getName() === $movieName) {
 
-                throw new MovieException("Фильм $movieName вами взят уже на прокат");
+                throw new Exception("Фильм $movieName вами взят уже на прокат");
             }
         }
-    }
-
-    public function getStatement(): Statement
-    {
-        return
-            $this->statement ??= new Statement($this);
     }
 }
